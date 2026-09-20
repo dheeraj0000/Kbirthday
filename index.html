@@ -53,7 +53,6 @@ body {
 }
 
 @keyframes twinkle {
-
     from {
         opacity: .2;
         transform: scale(.7);
@@ -63,7 +62,6 @@ body {
         opacity: 1;
         transform: scale(1.4);
     }
-
 }
 
 
@@ -89,6 +87,8 @@ section {
 
 .intro {
     text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .small-text {
@@ -101,19 +101,21 @@ section {
 
 h1 {
     font-size: clamp(2.5rem, 8vw, 5.5rem);
+
     background: linear-gradient(
         90deg,
         #fff,
         #ff9de6,
         #d59cff
     );
+
     -webkit-background-clip: text;
     color: transparent;
+
     animation: glow 3s infinite alternate;
 }
 
 @keyframes glow {
-
     from {
         filter: drop-shadow(0 0 5px #ff73d1);
     }
@@ -121,7 +123,6 @@ h1 {
     to {
         filter: drop-shadow(0 0 25px #b76cff);
     }
-
 }
 
 .subtitle {
@@ -138,6 +139,7 @@ h1 {
 .btn {
     margin-top: 30px;
     padding: 14px 28px;
+
     border: none;
     border-radius: 50px;
 
@@ -169,13 +171,9 @@ h1 {
    MOVING OPEN-YOUR-GIFT BUTTON
 ========================================================= */
 
-.intro {
-    position: relative;
-    overflow: hidden;
-}
-
 .moving-gift-btn {
     position: absolute !important;
+
     z-index: 20;
 
     margin-top: 0 !important;
@@ -236,8 +234,12 @@ h1 {
     50% {
         transform: translateY(-15px);
     }
-
 }
+
+
+/* =========================================================
+   GIFT BOX BODY
+========================================================= */
 
 .box {
     position: absolute;
@@ -368,16 +370,66 @@ h1 {
 
 .ribbon::before {
     left: -35px;
-
-    transform:
-        rotate(25deg);
+    transform: rotate(25deg);
 }
 
 .ribbon::after {
     left: 20px;
+    transform: rotate(-25deg);
+}
+
+
+/* =========================================================
+   PHOTO INSIDE GIFT
+========================================================= */
+
+.gift-photo {
+    position: absolute;
+
+    left: 50%;
+    bottom: 35px;
+
+    width: 150px;
+    height: 190px;
+
+    object-fit: cover;
+
+    border: 6px solid white;
+    border-radius: 12px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.5),
+        0 0 30px rgba(255,120,220,.7);
 
     transform:
-        rotate(-25deg);
+        translateX(-50%)
+        translateY(80px)
+        scale(.2)
+        rotate(-8deg);
+
+    opacity: 0;
+
+    z-index: 4;
+
+    pointer-events: none;
+
+    transition:
+        1.5s cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* =========================================================
+   PHOTO COMES OUT WHEN GIFT OPENS
+========================================================= */
+
+.gift.open .gift-photo {
+    opacity: 1;
+
+    transform:
+        translateX(-50%)
+        translateY(-190px)
+        scale(1)
+        rotate(-3deg);
 }
 
 
@@ -448,7 +500,6 @@ h1 {
             translateY(0)
             scale(1);
     }
-
 }
 
 .message-card h2 {
@@ -514,11 +565,6 @@ h1 {
     margin-top: 10px;
 }
 
-
-/* =========================================================
-   VIDEO CONTROLS / NEXT BUTTON
-========================================================= */
-
 .video-navigation {
     display: flex;
 
@@ -539,7 +585,6 @@ h1 {
 
 .memories {
     width: 100%;
-
     max-width: 950px;
 }
 
@@ -573,8 +618,7 @@ h1 {
 
     border-radius: 5px;
 
-    transform:
-        rotate(-2deg);
+    transform: rotate(-2deg);
 
     transition: .4s;
 
@@ -583,8 +627,7 @@ h1 {
 }
 
 .photo:nth-child(even) {
-    transform:
-        rotate(3deg);
+    transform: rotate(3deg);
 }
 
 .photo:hover {
@@ -638,11 +681,9 @@ h1 {
 
 /* =========================================================
    FINAL PAGE
-   HER PHOTO IS VISIBLE ON THE RIGHT
 ========================================================= */
 
 #finalSection {
-
     position: relative;
 
     overflow: hidden;
@@ -653,14 +694,12 @@ h1 {
         linear-gradient(
             to right,
 
-            /* Dark left side for text */
             rgba(18, 5, 31, .96) 0%,
 
             rgba(18, 5, 31, .88) 30%,
 
             rgba(18, 5, 31, .62) 52%,
 
-            /* Much clearer photo on right */
             rgba(18, 5, 31, .18) 75%,
 
             rgba(18, 5, 31, .08) 100%
@@ -670,9 +709,6 @@ h1 {
 
     background-size: cover;
 
-    /*
-       Keep her photo toward the RIGHT.
-    */
     background-position: right center;
 
     background-repeat: no-repeat;
@@ -686,7 +722,6 @@ h1 {
 ========================================================= */
 
 .final {
-
     text-align: left;
 
     width: 100%;
@@ -694,9 +729,7 @@ h1 {
     max-width: 1150px;
 
     padding:
-        40px
-        50% 40px
-        0;
+        40px 50% 40px 0;
 }
 
 .final .small-text {
@@ -704,7 +737,6 @@ h1 {
 }
 
 .final h2 {
-
     font-size:
         clamp(
             2.5rem,
@@ -723,7 +755,6 @@ h1 {
 }
 
 .final p {
-
     font-size: 1.3rem;
 
     color: #f1f1f1;
@@ -737,7 +768,6 @@ h1 {
 }
 
 .final p strong {
-
     color: #fff;
 
     text-shadow:
@@ -745,7 +775,6 @@ h1 {
 }
 
 .signature {
-
     margin-top: 30px;
 
     color: #ff9de0;
@@ -876,7 +905,6 @@ h1 {
             rotate(-45deg)
             scale(1.1);
     }
-
 }
 
 .cake-message {
@@ -922,7 +950,6 @@ h1 {
 
         opacity: 0;
     }
-
 }
 
 
@@ -956,7 +983,6 @@ h1 {
 
         opacity: 0;
     }
-
 }
 
 
@@ -1000,7 +1026,6 @@ h1 {
 
         opacity: 0;
     }
-
 }
 
 
@@ -1043,6 +1068,19 @@ h1 {
             rotateZ(-8deg);
     }
 
+    .gift-photo {
+        width: 135px;
+        height: 170px;
+    }
+
+    .gift.open .gift-photo {
+        transform:
+            translateX(-50%)
+            translateY(-170px)
+            scale(1)
+            rotate(-3deg);
+    }
+
     .message-card {
         padding: 30px 20px;
     }
@@ -1059,13 +1097,7 @@ h1 {
         max-height: 300px;
     }
 
-
-    /* =====================================================
-       FINAL PAGE MOBILE
-    ===================================================== */
-
     #finalSection {
-
         background-image:
             linear-gradient(
                 to bottom,
@@ -1084,9 +1116,7 @@ h1 {
         background-attachment: scroll;
     }
 
-
     .final {
-
         text-align: center;
 
         width: 100%;
@@ -1100,7 +1130,6 @@ h1 {
     }
 
     .final h2 {
-
         font-size:
             clamp(
                 2.3rem,
@@ -1114,7 +1143,6 @@ h1 {
     }
 
     .final p {
-
         font-size: 1.05rem;
 
         max-width: 100%;
@@ -1129,7 +1157,6 @@ h1 {
     #cakeSection {
         background-attachment: scroll;
     }
-
 }
 
 </style>
@@ -1151,7 +1178,6 @@ h1 {
 
 <!-- =========================================================
      PAGE 1
-     GIFT BOX
 ========================================================= -->
 
 <section class="intro">
@@ -1175,6 +1201,17 @@ h1 {
             class="gift"
             id="gift">
 
+
+            <!-- =================================================
+                 HER PHOTO INSIDE THE GIFT
+            ================================================= -->
+
+            <img
+                class="gift-photo"
+                src="https://res.cloudinary.com/dsozhkxss/image/upload/v1789886558/IMG-20260225-WA0273_khemcj.jpg"
+                alt="Keerthi Birthday Photo">
+
+
             <div class="ribbon"></div>
 
             <div class="lid"></div>
@@ -1185,6 +1222,10 @@ h1 {
 
     </div>
 
+
+    <!-- =====================================================
+         MOVING BUTTON
+    ===================================================== -->
 
     <button
         class="btn moving-gift-btn"
@@ -1218,8 +1259,6 @@ h1 {
         <div class="photo-grid">
 
 
-            <!-- PHOTO 1 -->
-
             <div class="photo">
 
                 <img
@@ -1232,8 +1271,6 @@ h1 {
 
             </div>
 
-
-            <!-- PHOTO 2 -->
 
             <div class="photo">
 
@@ -1248,8 +1285,6 @@ h1 {
             </div>
 
 
-            <!-- PHOTO 3 -->
-
             <div class="photo">
 
                 <img
@@ -1263,8 +1298,6 @@ h1 {
             </div>
 
 
-            <!-- PHOTO 4 -->
-
             <div class="photo">
 
                 <img
@@ -1276,7 +1309,6 @@ h1 {
                 </p>
 
             </div>
-
 
         </div>
 
@@ -1305,7 +1337,6 @@ h1 {
 
 <!-- =========================================================
      PAGE 3
-     VIDEO / MAIN GIFT
 ========================================================= -->
 
 <section
@@ -1322,8 +1353,6 @@ h1 {
             Here's something made especially for you. ❤️
         </p>
 
-
-        <!-- VIDEO -->
 
         <div class="video-container">
 
@@ -1354,8 +1383,6 @@ h1 {
         </div>
 
 
-        <!-- NEXT -->
-
         <div class="video-navigation">
 
             <button
@@ -1376,7 +1403,6 @@ h1 {
 
 <!-- =========================================================
      PAGE 4
-     CAKE
 ========================================================= -->
 
 <section
@@ -1444,7 +1470,6 @@ h1 {
 
 <!-- =========================================================
      PAGE 5
-     FINAL
 ========================================================= -->
 
 <section
@@ -1528,7 +1553,6 @@ for(let i = 0; i < 100; i++){
         Math.random() * 2 + "s";
 
     stars.appendChild(star);
-
 }
 
 
@@ -1552,6 +1576,10 @@ let buttonMovementInterval = null;
 
 let buttonMovementTimeout = null;
 
+
+/* =========================================================
+   MOVE BUTTON
+========================================================= */
 
 function moveOpenGiftButton(){
 
@@ -1631,11 +1659,21 @@ function moveOpenGiftButton(){
         "auto";
 
 
+    /*
+       IMPORTANT:
+       Never scale the button.
+    */
+
     openGiftButton.style.transform =
         "none";
 
 }
 
+
+/* =========================================================
+   START BUTTON MOVEMENT
+   MOVES FOR EXACTLY 2 SECONDS
+========================================================= */
 
 function startOpenGiftButtonMovement(){
 
@@ -1683,6 +1721,7 @@ function startOpenGiftButtonMovement(){
 
 /* =========================================================
    DESKTOP
+   BUTTON RUNS AWAY WHEN CURSOR GETS CLOSE
 ========================================================= */
 
 document.addEventListener(
@@ -1749,9 +1788,16 @@ openGiftButton.addEventListener(
 
 /* =========================================================
    OPEN GIFT
+   1. BUTTON DISAPPEARS
+   2. GIFT OPENS
+   3. PHOTO COMES OUT
+   4. MEMORIES PAGE OPENS
 ========================================================= */
 
 function openGift(){
+
+
+    /* Stop button movement */
 
     if(buttonMovementInterval){
 
@@ -1779,9 +1825,13 @@ function openGift(){
         true;
 
 
+    /* Hide button */
+
     openGiftButton.style.display =
         "none";
 
+
+    /* Open gift */
 
     const gift =
         document.getElementById("gift");
@@ -1790,10 +1840,17 @@ function openGift(){
     gift.classList.add("open");
 
 
+    /* Celebration */
+
     createConfetti();
 
     createHearts();
 
+
+    /*
+       Wait until the photo animation
+       has finished.
+    */
 
     setTimeout(() => {
 
@@ -1813,7 +1870,7 @@ function openGift(){
         });
 
 
-    }, 1200);
+    }, 3200);
 
 }
 
@@ -2034,18 +2091,11 @@ function showCake(){
 
 function finishBirthday(){
 
-    /*
-        Hide cake
-    */
 
     document
         .getElementById("cakeSection")
         .classList.add("hidden");
 
-
-    /*
-        Show final page
-    */
 
     const final =
         document.getElementById(
@@ -2063,18 +2113,10 @@ function finishBirthday(){
     });
 
 
-    /*
-        Celebration
-    */
-
     createConfetti();
 
     createHearts();
 
-
-    /*
-        Fireworks
-    */
 
     setTimeout(() => {
 
@@ -2142,22 +2184,16 @@ function createFirework(x, y){
 
 
         particle.style.setProperty(
-
             "--x",
-
             Math.cos(angle) *
             distance
-
         );
 
 
         particle.style.setProperty(
-
             "--y",
-
             Math.sin(angle) *
             distance
-
         );
 
 
@@ -2232,7 +2268,7 @@ setInterval(() => {
 
 
 /* =========================================================
-   INITIAL OPEN-YOUR-GIFT BUTTON POSITION
+   INITIAL BUTTON POSITION
 ========================================================= */
 
 function positionOpenGiftButton(){
