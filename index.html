@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -87,19 +88,13 @@ body {
 @keyframes twinkle {
 
     from {
-
         opacity: .2;
-
-        transform:
-            scale(.7);
+        transform: scale(.7);
     }
 
     to {
-
         opacity: 1;
-
-        transform:
-            scale(1.4);
+        transform: scale(1.4);
     }
 }
 
@@ -259,7 +254,6 @@ h1 {
 
 
 /*
-   IMPORTANT:
    Moving gift button NEVER scales.
 */
 
@@ -308,7 +302,7 @@ h1 {
 
     width: 210px;
 
-    height: 180px;
+    height: 220px;
 
     cursor: pointer;
 
@@ -319,11 +313,6 @@ h1 {
         3s
         ease-in-out
         infinite;
-
-    /*
-       IMPORTANT:
-       Do not clip the photo.
-    */
 
     overflow: visible;
 }
@@ -541,10 +530,6 @@ h1 {
 
     left: 50%;
 
-    /*
-       Start deep inside the box.
-    */
-
     bottom: 28px;
 
     width: 138px;
@@ -570,19 +555,11 @@ h1 {
         0 0 30px
         rgba(255,150,220,.5);
 
-    /*
-       Photo is above the box.
-    */
-
     z-index: 11;
 
     opacity: 0;
 
     pointer-events: none;
-
-    /*
-       Initially hidden inside.
-    */
 
     transform:
         translate(
@@ -616,12 +593,6 @@ h1 {
 
     opacity: 1;
 
-    /*
-       Move MUCH higher than before.
-       This puts the complete image
-       above the box and lid.
-    */
-
     transform:
         translate(
             -50%,
@@ -645,11 +616,8 @@ h1 {
 
 
 /* =========================================================
-   CRITICAL FIX
-   WHEN PHOTO IS FULLY OUT:
-
-   Completely hide the lid so it can NEVER
-   cover any part of the photo.
+   IMPORTANT:
+   HIDE LID COMPLETELY WHEN PHOTO IS OUT
 ========================================================= */
 
 .gift.show-photo .lid {
@@ -666,11 +634,6 @@ h1 {
         rotateZ(-8deg);
 }
 
-
-/*
-   Also hide the old ribbon once
-   the photo is completely visible.
-*/
 
 .gift.show-photo .ribbon {
 
@@ -960,6 +923,358 @@ h1 {
 
 
 /* =========================================================
+   SECRET LETTER SECTION
+========================================================= */
+
+#letterSection {
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(126,52,164,.35),
+            transparent 65%
+        );
+}
+
+
+/* =========================================================
+   LETTER INTRO
+========================================================= */
+
+.letter-intro {
+
+    text-align: center;
+
+    max-width: 700px;
+
+    margin-bottom: 35px;
+}
+
+
+.letter-intro h2 {
+
+    font-size:
+        clamp(
+            2.2rem,
+            7vw,
+            4rem
+        );
+
+    color: #ffd4ef;
+
+    margin-bottom: 15px;
+}
+
+
+.letter-intro p {
+
+    color: #ddd;
+
+    font-size: 1.1rem;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   ENVELOPE
+========================================================= */
+
+.envelope-wrap {
+
+    position: relative;
+
+    width: 320px;
+
+    max-width: 90vw;
+
+    height: 220px;
+
+    margin: 30px auto;
+
+    perspective: 1000px;
+}
+
+
+.envelope {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 100%;
+
+    cursor: pointer;
+
+    transform-style: preserve-3d;
+
+    filter:
+        drop-shadow(
+            0 20px 30px
+            rgba(0,0,0,.4)
+        );
+}
+
+
+/* Envelope body */
+
+.envelope-body {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff5ba9,
+            #b949c7
+        );
+
+    border-radius: 12px;
+
+    z-index: 2;
+
+    overflow: hidden;
+}
+
+
+/* Envelope bottom triangles */
+
+.envelope-body::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: 0;
+
+    width: 0;
+
+    height: 0;
+
+    border-left:
+        160px solid transparent;
+
+    border-right:
+        160px solid transparent;
+
+    border-bottom:
+        125px solid
+        rgba(255,255,255,.16);
+}
+
+
+.envelope-body::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: 0;
+
+    width: 0;
+
+    height: 0;
+
+    border-left:
+        160px solid transparent;
+
+    border-right:
+        160px solid transparent;
+
+    border-bottom:
+        105px solid
+        rgba(0,0,0,.12);
+}
+
+
+/* Envelope flap */
+
+.envelope-flap {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 125px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff83bf,
+            #d4479b
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 100%
+        );
+
+    transform-origin:
+        top center;
+
+    z-index: 5;
+
+    transition:
+        transform
+        1s
+        cubic-bezier(
+            .2,
+            .8,
+            .2,
+            1
+        );
+}
+
+
+/* Letter paper */
+
+.letter-paper {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 10px;
+
+    width: 88%;
+
+    height: 180px;
+
+    transform:
+        translateX(-50%)
+        translateY(80px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff,
+            #fff5fb
+        );
+
+    border-radius: 8px;
+
+    padding:
+        20px;
+
+    color: #54204d;
+
+    z-index: 20;
+
+    opacity: 0;
+
+    transition:
+
+        transform
+        1.1s
+        cubic-bezier(
+            .16,
+            1,
+            .3,
+            1
+        ),
+
+        opacity
+        .6s ease;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.25);
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+}
+
+
+.letter-paper h3 {
+
+    color: #d83f91;
+
+    margin-bottom: 10px;
+
+    font-size: 1.3rem;
+}
+
+
+.letter-paper p {
+
+    line-height: 1.65;
+
+    font-size: .95rem;
+}
+
+
+/* Open envelope */
+
+.envelope.open .envelope-flap {
+
+    transform:
+        translateY(-165px)
+        rotateX(180deg);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+
+.envelope.open .letter-paper {
+
+    transform:
+        translateX(-50%)
+        translateY(-90px);
+
+    opacity: 1;
+}
+
+
+/* Envelope heart */
+
+.envelope-heart {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(-50%,-20%);
+
+    font-size: 42px;
+
+    z-index: 7;
+
+    transition:
+        opacity .4s ease,
+        transform .5s ease;
+}
+
+
+.envelope.open .envelope-heart {
+
+    opacity: 0;
+
+    transform:
+        translate(-50%,-20%)
+        scale(1.5);
+}
+
+
+/* =========================================================
    CAKE + FINAL BACKGROUND
 ========================================================= */
 
@@ -1081,17 +1396,14 @@ h1 {
 
 
 .candle:nth-child(1) {
-
     left: 65px;
 }
 
 .candle:nth-child(2) {
-
     left: 122px;
 }
 
 .candle:nth-child(3) {
-
     left: 179px;
 }
 
@@ -1150,6 +1462,236 @@ h1 {
     font-size: 1.2rem;
 
     color: #ffd8ef;
+}
+
+
+/* =========================================================
+   CINEMATIC FINAL
+========================================================= */
+
+#finalSection {
+
+    overflow: hidden;
+
+    text-align: center;
+}
+
+
+/* Dark overlay */
+
+#finalSection::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,85,190,.18),
+            transparent 55%
+        );
+
+    pointer-events: none;
+}
+
+
+.final {
+
+    position: relative;
+
+    z-index: 5;
+
+    max-width: 850px;
+
+    opacity: 0;
+
+    transform:
+        translateY(35px)
+        scale(.96);
+
+    animation:
+        finalReveal
+        1.8s
+        ease
+        forwards;
+}
+
+
+@keyframes finalReveal {
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+.final .small-text {
+
+    animation:
+        glowText
+        2s
+        infinite
+        alternate;
+}
+
+
+@keyframes glowText {
+
+    from {
+
+        text-shadow:
+            0 0 5px
+            #ff65bd;
+    }
+
+    to {
+
+        text-shadow:
+            0 0 25px
+            #ff65bd,
+            0 0 45px
+            #9d5cff;
+    }
+}
+
+
+.final h2 {
+
+    font-size:
+        clamp(
+            2.5rem,
+            8vw,
+            5rem
+        );
+
+    margin-bottom: 25px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #ff9dde,
+            #d49cff,
+            #fff
+        );
+
+    background-size:
+        250% 100%;
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+
+    animation:
+        gradientMove
+        4s
+        linear
+        infinite;
+}
+
+
+@keyframes gradientMove {
+
+    from {
+        background-position: 0% 50%;
+    }
+
+    to {
+        background-position: 250% 50%;
+    }
+}
+
+
+/* Final surprise photos - placed directly inside the two pink boxes */
+.final-photo {
+    position: absolute;
+    width: 76px;
+    height: 76px;
+    object-fit: cover;
+    object-position: center;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,.35), 0 0 18px rgba(255,105,190,.35);
+    z-index: 6;
+    animation: finalPhotoFloat 3s ease-in-out infinite;
+}
+
+.final-photo-left {
+    left: 94px;
+    top: 0;
+}
+
+.final-photo-right {
+    right: 94px;
+    top: 101px;
+    animation-delay: .5s;
+}
+
+@keyframes finalPhotoFloat {
+    0%, 100% { margin-top: 0; }
+    50% { margin-top: -8px; }
+}
+
+@media (max-width: 700px) {
+    .final-photo {
+        width: 58px;
+        height: 58px;
+        border-radius: 7px;
+    }
+    .final-photo-left {
+        left: 35px;
+        top: 4px;
+    }
+    .final-photo-right {
+        right: 35px;
+        top: 82px;
+    }
+}
+
+
+.final p {
+
+    font-size: 1.3rem;
+
+    color: #eee;
+
+    max-width: 750px;
+
+    line-height: 1.9;
+
+    margin: auto;
+}
+
+
+.final strong {
+
+    color: #ffd0ed;
+
+    font-size: 1.4rem;
+
+    text-shadow:
+        0 0 15px
+        rgba(255,100,190,.6);
+}
+
+
+.signature {
+
+    margin-top: 35px;
+
+    color: #ff9de0;
+
+    font-family: cursive;
+
+    font-size: 1.6rem;
 }
 
 
@@ -1294,49 +1836,165 @@ h1 {
 
 
 /* =========================================================
-   FINAL
+   COUNTDOWN OVERLAY
 ========================================================= */
 
-.final {
+.countdown-overlay {
 
-    text-align: center;
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(72,25,103,.96),
+            rgba(8,2,18,.99)
+        );
+
+    z-index: 1000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity .5s ease;
 }
 
 
-.final h2 {
+.countdown-overlay.active {
 
-    font-size:
-        clamp(
-            2.5rem,
-            8vw,
-            5rem
-        );
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+.countdown-small {
+
+    font-size: 1.1rem;
+
+    letter-spacing: 4px;
+
+    color: #ffd0ec;
+
+    text-transform: uppercase;
 
     margin-bottom: 20px;
 }
 
 
-.final p {
+.countdown-number {
 
-    font-size: 1.3rem;
+    font-size:
+        clamp(
+            7rem,
+            25vw,
+            15rem
+        );
 
-    color: #ddd;
+    font-weight: 900;
 
-    max-width: 700px;
+    line-height: 1;
 
-    line-height: 1.8;
+    background:
+        linear-gradient(
+            135deg,
+            #fff,
+            #ff70c5,
+            #b47cff
+        );
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+
+    text-shadow:
+        0 0 40px
+        rgba(255,90,190,.7);
+
+    animation:
+        countdownPop
+        .9s
+        ease;
 }
 
 
-.signature {
+@keyframes countdownPop {
 
-    margin-top: 30px;
+    0% {
 
-    color: #ff9de0;
+        opacity: 0;
 
-    font-family: cursive;
+        transform:
+            scale(.2)
+            rotate(-15deg);
+    }
 
-    font-size: 1.5rem;
+    60% {
+
+        opacity: 1;
+
+        transform:
+            scale(1.15)
+            rotate(3deg);
+    }
+
+    100% {
+
+        transform:
+            scale(1)
+            rotate(0);
+    }
+}
+
+
+.countdown-final {
+
+    font-size:
+        clamp(
+            2rem,
+            8vw,
+            5rem
+        );
+
+    text-align: center;
+
+    color: #fff;
+
+    animation:
+        finalCountdownPop
+        1s
+        ease;
+}
+
+
+@keyframes finalCountdownPop {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(.5);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+    }
 }
 
 
@@ -1362,11 +2020,6 @@ h1 {
     }
 
 
-    /*
-       On mobile the photo also comes
-       completely above the gift.
-    */
-
     .gift.show-photo .gift-photo {
 
         transform:
@@ -1377,11 +2030,6 @@ h1 {
             scale(1);
     }
 
-
-    /*
-       Lid is completely hidden after
-       the photo appears.
-    */
 
     .gift.show-photo .lid {
 
@@ -1437,6 +2085,28 @@ h1 {
     }
 
 
+    .envelope-wrap {
+
+        width: 290px;
+
+        height: 200px;
+    }
+
+
+    .letter-paper {
+
+        height: 205px;
+
+        padding: 16px;
+    }
+
+
+    .letter-paper p {
+
+        font-size: .85rem;
+    }
+
+
     #cakeSection,
     #finalSection {
 
@@ -1447,6 +2117,7 @@ h1 {
 }
 
 </style>
+
 </head>
 
 
@@ -1479,13 +2150,6 @@ h1 {
     </div>
 
 
-    <h1>
-
-        Happy Birthday Keerthi! 🎂
-
-    </h1>
-
-
     <p class="subtitle">
 
         Someone special left you a gift... 💖
@@ -1504,12 +2168,7 @@ h1 {
             <div class="ribbon"></div>
 
 
-            <!--
-                HER PHOTO
-
-                Starts inside the gift.
-                Comes completely out when opened.
-            -->
+            <!-- HER PHOTO -->
 
             <img
                 id="giftPhoto"
@@ -1528,10 +2187,6 @@ h1 {
 
     </div>
 
-
-    <!--
-        MOVING BUTTON
-    -->
 
     <button
         class="btn moving-gift-btn"
@@ -1691,8 +2346,13 @@ h1 {
                 preload="metadata">
 
 
+                <!-- =====================================================
+                     🎥 RANDOM 5-SECOND VIDEO
+                     Change ONLY this src URL if you want
+                     to use your own 4-5 second MP4 video.
+                ====================================================== -->
                 <source
-                    src="birthday-video.mp4"
+                    src="https://samplelib.com/lib/preview/mp4/sample-5s.mp4"
                     type="video/mp4">
 
 
@@ -1726,9 +2386,9 @@ h1 {
 
             <button
                 class="btn"
-                onclick="showCake()">
+                onclick="showLetter()">
 
-                🎂 Continue to Wish
+                💌 There's One More Thing...
 
             </button>
 
@@ -1742,7 +2402,116 @@ h1 {
 
 
 <!-- =========================================================
-     PAGE 4 - CAKE
+     PAGE 4 - SECRET LETTER
+========================================================= -->
+
+<section
+    id="letterSection"
+    class="hidden">
+
+
+    <div class="letter-intro">
+
+
+        <div class="small-text">
+
+            A secret message for you 💌
+
+        </div>
+
+
+        <h2>
+
+            Wait... I found one more thing.
+
+        </h2>
+
+
+        <p>
+
+            Before you continue,
+            there's a little message hidden
+            inside this envelope.
+
+            <br>
+
+            Open it... ❤️
+
+        </p>
+
+
+    </div>
+
+
+    <div class="envelope-wrap">
+
+
+        <div
+            class="envelope"
+            id="envelope"
+            onclick="openLetter()">
+
+
+            <div class="letter-paper">
+
+                <h3>
+
+                    Dear Keerthi ❤️
+
+                </h3>
+
+
+                <p>
+
+                    Today is your special day, but honestly,
+                    you deserve to feel special every day.
+
+                </p>
+
+                <p>
+
+                    Keep smiling, keep dreaming, and keep being
+                    the wonderful person you are.
+
+                </p>
+
+            </div>
+
+
+            <div class="envelope-body"></div>
+
+
+            <div class="envelope-flap"></div>
+
+
+            <div class="envelope-heart">
+
+                💖
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="btn"
+        id="letterContinueBtn"
+        style="display:none;"
+        onclick="showCake()">
+
+        🎂 There's Still One More Surprise
+
+    </button>
+
+
+</section>
+
+
+<!-- =========================================================
+     PAGE 5 - CAKE
 ========================================================= -->
 
 <section
@@ -1751,6 +2520,13 @@ h1 {
 
 
     <div class="cake-area">
+
+
+        <div class="small-text">
+
+            Almost there... ✨
+
+        </div>
 
 
         <h2>
@@ -1796,7 +2572,15 @@ h1 {
         <p class="cake-message">
 
             Close your eyes...
-            make a wish... ✨
+
+            <br>
+
+            Make a wish...
+
+            <br>
+
+            And when you're ready,
+            click below. ✨
 
         </p>
 
@@ -1816,7 +2600,35 @@ h1 {
 
 
 <!-- =========================================================
-     PAGE 5 - FINAL
+     COUNTDOWN OVERLAY
+========================================================= -->
+
+<div
+    class="countdown-overlay"
+    id="countdownOverlay">
+
+
+    <div class="countdown-small">
+
+        One last surprise...
+
+    </div>
+
+
+    <div
+        class="countdown-number"
+        id="countdownNumber">
+
+        3
+
+    </div>
+
+
+</div>
+
+
+<!-- =========================================================
+     PAGE 6 - FINAL
 ========================================================= -->
 
 <section
@@ -1829,7 +2641,7 @@ h1 {
 
         <div class="small-text">
 
-            Your final surprise
+            Your final surprise ✨
 
         </div>
 
@@ -1857,7 +2669,13 @@ h1 {
             <strong>
 
                 You are loved.
+
+                <br>
+
                 You are appreciated.
+
+                <br>
+
                 And you deserve beautiful things. ❤️
 
             </strong>
@@ -1881,7 +2699,7 @@ h1 {
 
 
 /* =========================================================
-   STARS
+   CREATE STARS
 ========================================================= */
 
 const stars =
@@ -1920,7 +2738,8 @@ for (
 
 /* =========================================================
    MOVING BUTTON
-   EXACTLY 2 SECONDS
+   STARTS ONLY WHEN THE CURSOR MOVES INTO THE BUTTON
+   AND MOVES FOR 4 SECONDS
 ========================================================= */
 
 const giftButton =
@@ -1956,61 +2775,50 @@ function placeButtonRandomly() {
     const rect =
         introSection.getBoundingClientRect();
 
-
     const buttonWidth =
         giftButton.offsetWidth;
-
 
     const buttonHeight =
         giftButton.offsetHeight;
 
+    const current =
+        giftButton.getBoundingClientRect();
 
-    const minX =
-        Math.max(
-            10,
-            rect.left + 20
-        );
+    const currentCenterX =
+        current.left + current.width / 2;
 
+    const currentCenterY =
+        current.top + current.height / 2;
 
-    const maxX =
-        Math.max(
-            minX,
-            rect.right -
-            buttonWidth -
-            20
-        );
+    const cursorX =
+        window.lastMouseX ?? currentCenterX;
 
+    const cursorY =
+        window.lastMouseY ?? currentCenterY;
 
-    const minY =
-        Math.max(
-            20,
-            rect.top + 20
-        );
+    let dx = currentCenterX - cursorX;
+    let dy = currentCenterY - cursorY;
 
+    const distance = Math.hypot(dx, dy) || 1;
 
-    const maxY =
-        Math.max(
-            minY,
-            rect.bottom -
-            buttonHeight -
-            20
-        );
+    dx /= distance;
+    dy /= distance;
 
+    const jump = 90 + Math.random() * 80;
 
-    giftButton.style.left =
-        (
-            minX +
-            Math.random() *
-            (maxX - minX)
-        ) + "px";
+    let targetX = current.left + dx * jump;
+    let targetY = current.top + dy * jump;
 
+    const minX = rect.left + 15;
+    const maxX = rect.right - buttonWidth - 15;
+    const minY = rect.top + 15;
+    const maxY = rect.bottom - buttonHeight - 15;
 
-    giftButton.style.top =
-        (
-            minY +
-            Math.random() *
-            (maxY - minY)
-        ) + "px";
+    targetX = Math.max(minX, Math.min(maxX, targetX));
+    targetY = Math.max(minY, Math.min(maxY, targetY));
+
+    giftButton.style.left = targetX + "px";
+    giftButton.style.top = targetY + "px";
 }
 
 
@@ -2040,13 +2848,9 @@ function startButtonMovement() {
     buttonMoveTimer =
         setInterval(
             placeButtonRandomly,
-            120
+            85
         );
 
-
-    /*
-       EXACTLY 2 SECONDS
-    */
 
     buttonStopTimer =
         setTimeout(
@@ -2078,18 +2882,23 @@ function startButtonMovement() {
                     "";
 
             },
-            2000
+            4000
         );
 }
 
 
 /* =========================================================
    MOUSE DETECTION
+   The button starts moving only when the cursor
+   comes close to / moves into it.
 ========================================================= */
 
 document.addEventListener(
     "mousemove",
     (event) => {
+
+        window.lastMouseX = event.clientX;
+        window.lastMouseY = event.clientY;
 
         if (
             buttonMovementFinished
@@ -2176,10 +2985,6 @@ function openGift() {
         true;
 
 
-    /*
-       Stop button movement.
-    */
-
     clearInterval(
         buttonMoveTimer
     );
@@ -2194,10 +2999,6 @@ function openGift() {
         true;
 
 
-    /*
-       Hide button.
-    */
-
     giftButton.style.display =
         "none";
 
@@ -2209,8 +3010,7 @@ function openGift() {
 
 
     /*
-       STEP 1
-       Open gift.
+       Open the gift.
     */
 
     gift.classList.add(
@@ -2218,19 +3018,14 @@ function openGift() {
     );
 
 
-    /*
-       Celebration.
-    */
-
     createConfetti();
 
     createHearts();
 
 
     /*
-       STEP 2
-       Wait for lid to open,
-       then raise photo.
+       Give the lid time to open,
+       then bring the photo upward.
     */
 
     setTimeout(
@@ -2246,12 +3041,10 @@ function openGift() {
 
 
     /*
-       STEP 3
-       WAIT 4 FULL SECONDS
-       AFTER PHOTO APPEARS.
+       4 second pause after photo
+       reveal begins.
 
-       This means she gets time to
-       actually see the complete photo.
+       Total = approximately 4.7 sec.
     */
 
     setTimeout(
@@ -2272,17 +3065,339 @@ function openGift() {
                 behavior: "smooth"
             });
 
-
         },
-
-        /*
-           700ms before photo starts
-           + 4000ms photo display time
-           = 4700ms total.
-        */
-
         4700
     );
+
+}
+
+
+/* =========================================================
+   SHOW VIDEO
+========================================================= */
+
+function showVideo() {
+
+    const section =
+        document.getElementById(
+            "giftsSection"
+        );
+
+
+    section.classList.remove(
+        "hidden"
+    );
+
+
+    section.scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+
+/* =========================================================
+   SECRET LETTER
+========================================================= */
+
+function showLetter() {
+
+    const section =
+        document.getElementById(
+            "letterSection"
+        );
+
+
+    section.classList.remove(
+        "hidden"
+    );
+
+
+    section.scrollIntoView({
+        behavior: "smooth"
+    });
+
+
+    createHearts();
+
+}
+
+
+/* =========================================================
+   OPEN ENVELOPE
+========================================================= */
+
+let letterOpened =
+    false;
+
+
+function openLetter() {
+
+    if (letterOpened) {
+
+        return;
+    }
+
+
+    letterOpened =
+        true;
+
+
+    const envelope =
+        document.getElementById(
+            "envelope"
+        );
+
+
+    envelope.classList.add(
+        "open"
+    );
+
+
+    createHearts();
+
+
+    createConfetti();
+
+
+    /*
+       Show next button after the
+       message has had time to rise.
+    */
+
+    setTimeout(
+        () => {
+
+            const btn =
+                document.getElementById(
+                    "letterContinueBtn"
+                );
+
+
+            btn.style.display =
+                "inline-block";
+
+
+            btn.style.animation =
+                "appear 1s ease";
+
+        },
+        1500
+    );
+
+}
+
+
+/* =========================================================
+   SHOW CAKE
+========================================================= */
+
+function showCake() {
+
+    const section =
+        document.getElementById(
+            "cakeSection"
+        );
+
+
+    section.classList.remove(
+        "hidden"
+    );
+
+
+    section.scrollIntoView({
+        behavior: "smooth"
+    });
+
+
+    createHearts();
+
+}
+
+
+/* =========================================================
+   FINAL BIRTHDAY
+========================================================= */
+
+let finalStarted =
+    false;
+
+
+function finishBirthday() {
+
+    if (finalStarted) {
+
+        return;
+    }
+
+
+    finalStarted =
+        true;
+
+
+    startCountdown();
+
+}
+
+
+/* =========================================================
+   3... 2... 1...
+========================================================= */
+
+function startCountdown() {
+
+    const overlay =
+        document.getElementById(
+            "countdownOverlay"
+        );
+
+
+    const number =
+        document.getElementById(
+            "countdownNumber"
+        );
+
+
+    overlay.classList.add(
+        "active"
+    );
+
+
+    let count = 3;
+
+
+    number.textContent =
+        count;
+
+
+    /*
+       3
+    */
+
+    createFirework(
+        window.innerWidth / 2,
+        window.innerHeight / 2
+    );
+
+
+    const timer =
+        setInterval(
+            () => {
+
+                count--;
+
+
+                if (
+                    count > 0
+                ) {
+
+                    number.style.animation =
+                        "none";
+
+
+                    void number.offsetWidth;
+
+
+                    number.style.animation =
+                        "countdownPop .9s ease";
+
+
+                    number.textContent =
+                        count;
+
+
+                    createConfetti();
+
+
+                    createFirework(
+                        Math.random() *
+                        window.innerWidth,
+
+                        Math.random() *
+                        window.innerHeight *
+                        .6
+                    );
+
+                }
+
+
+                if (
+                    count === 0
+                ) {
+
+                    clearInterval(
+                        timer
+                    );
+
+
+                    number.className =
+                        "countdown-final";
+
+
+                    number.innerHTML =
+                        "🎉 HAPPY BIRTHDAY<br>KEERTHI! 🎂";
+
+
+                    createConfetti();
+
+                    createConfetti();
+
+                    createHearts();
+
+
+                    /*
+                       Wait a moment with
+                       the celebration message,
+                       then reveal final page.
+                    */
+
+                    setTimeout(
+                        () => {
+
+                            overlay.classList.remove(
+                                "active"
+                            );
+
+
+                            document
+                                .getElementById(
+                                    "cakeSection"
+                                )
+                                .classList.add(
+                                    "hidden"
+                                );
+
+
+                            const final =
+                                document.getElementById(
+                                    "finalSection"
+                                );
+
+
+                            final.classList.remove(
+                                "hidden"
+                            );
+
+
+                            final.scrollIntoView({
+                                behavior: "smooth"
+                            });
+
+
+                            /*
+                               BIG FIREWORK SHOW
+                            */
+
+                            launchFireworkShow();
+
+
+                        },
+                        1800
+                    );
+                }
+
+            },
+            1000
+        );
 
 }
 
@@ -2365,7 +3480,8 @@ function createHearts() {
         "💕",
         "💗",
         "💓",
-        "💞"
+        "💞",
+        "💘"
 
     ];
 
@@ -2433,146 +3549,7 @@ function createHearts() {
 
 
 /* =========================================================
-   SHOW MEMORIES
-========================================================= */
-
-function showMemories() {
-
-    const section =
-        document.getElementById(
-            "memorySection"
-        );
-
-
-    section.classList.remove(
-        "hidden"
-    );
-
-
-    section.scrollIntoView({
-        behavior: "smooth"
-    });
-}
-
-
-/* =========================================================
-   SHOW VIDEO
-========================================================= */
-
-function showVideo() {
-
-    const section =
-        document.getElementById(
-            "giftsSection"
-        );
-
-
-    section.classList.remove(
-        "hidden"
-    );
-
-
-    section.scrollIntoView({
-        behavior: "smooth"
-    });
-}
-
-
-/* =========================================================
-   SHOW CAKE
-========================================================= */
-
-function showCake() {
-
-    const section =
-        document.getElementById(
-            "cakeSection"
-        );
-
-
-    section.classList.remove(
-        "hidden"
-    );
-
-
-    section.scrollIntoView({
-        behavior: "smooth"
-    });
-}
-
-
-/* =========================================================
-   FINISH BIRTHDAY
-========================================================= */
-
-function finishBirthday() {
-
-    document
-        .getElementById(
-            "cakeSection"
-        )
-        .classList.add(
-            "hidden"
-        );
-
-
-    const final =
-        document.getElementById(
-            "finalSection"
-        );
-
-
-    final.classList.remove(
-        "hidden"
-    );
-
-
-    final.scrollIntoView({
-        behavior: "smooth"
-    });
-
-
-    createConfetti();
-
-    createHearts();
-
-
-    setTimeout(
-        () => {
-
-            for (
-                let i = 0;
-                i < 12;
-                i++
-            ) {
-
-                setTimeout(
-                    () => {
-
-                        createFirework(
-
-                            Math.random() *
-                            window.innerWidth,
-
-                            Math.random() *
-                            window.innerHeight *
-                            .7
-
-                        );
-
-                    },
-                    i * 350
-                );
-            }
-
-        },
-        500
-    );
-}
-
-
-/* =========================================================
-   FIREWORKS
+   FIREWORK
 ========================================================= */
 
 function createFirework(
@@ -2662,6 +3639,75 @@ function createFirework(
 
 
 /* =========================================================
+   BIG FINAL FIREWORK SHOW
+========================================================= */
+
+function launchFireworkShow() {
+
+    const duration =
+        9000;
+
+
+    const start =
+        Date.now();
+
+
+    function launch() {
+
+        if (
+            Date.now() -
+            start >
+            duration
+        ) {
+
+            return;
+        }
+
+
+        const x =
+            80 +
+            Math.random() *
+            (
+                window.innerWidth -
+                160
+            );
+
+
+        const y =
+            70 +
+            Math.random() *
+            (
+                window.innerHeight *
+                .55
+            );
+
+
+        createFirework(
+            x,
+            y
+        );
+
+
+        setTimeout(
+            launch,
+            350 +
+            Math.random() *
+            450
+        );
+    }
+
+
+    launch();
+
+
+    createConfetti();
+
+    createHearts();
+
+}
+
+
+/* =========================================================
    RANDOM FLOATING HEARTS
 ========================================================= */
 
@@ -2713,7 +3759,7 @@ setInterval(
 
 
 /* =========================================================
-   VIDEO
+   VIDEO ENDED
 ========================================================= */
 
 const birthdayVideo =
@@ -2733,6 +3779,7 @@ if (birthdayVideo) {
         }
     );
 }
+
 
 </script>
 
