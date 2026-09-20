@@ -1,0 +1,1893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>🎁 A Birthday Surprise</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    background: radial-gradient(circle at top, #30115e, #12051f 70%);
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+
+    from {
+        opacity: .2;
+        transform: scale(.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.4);
+    }
+
+}
+
+
+/* =========================================================
+   MAIN SECTIONS
+========================================================= */
+
+section {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    padding: 70px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.intro {
+    text-align: center;
+}
+
+.small-text {
+    font-size: 1rem;
+    color: #e9c8ff;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 8vw, 5.5rem);
+    background: linear-gradient(
+        90deg,
+        #fff,
+        #ff9de6,
+        #d59cff
+    );
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: glow 3s infinite alternate;
+}
+
+@keyframes glow {
+
+    from {
+        filter: drop-shadow(0 0 5px #ff73d1);
+    }
+
+    to {
+        filter: drop-shadow(0 0 25px #b76cff);
+    }
+
+}
+
+.subtitle {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    color: #ddd;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.btn {
+    margin-top: 30px;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(
+        135deg,
+        #ff4db8,
+        #9b5cff
+    );
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow:
+        0 0 25px rgba(255, 75, 184, .4);
+    transition: box-shadow .3s;
+}
+
+.btn:hover {
+    transform: none;
+    box-shadow:
+        0 0 35px rgba(255, 75, 184, .8);
+}
+
+/* =========================================================
+   MOVING OPEN-YOUR-GIFT BUTTON
+   The button moves only on the first page.
+   Its size never changes while moving.
+========================================================= */
+
+.intro {
+    position: relative;
+    overflow: hidden;
+}
+
+.moving-gift-btn {
+    position: absolute !important;
+    z-index: 20;
+    margin-top: 0 !important;
+    transform: none !important;
+    transition: left .12s linear, top .12s linear, box-shadow .2s;
+    white-space: nowrap;
+}
+
+.moving-gift-btn:hover,
+.moving-gift-btn:focus,
+.moving-gift-btn:active {
+    transform: none !important;
+}
+
+
+/* =========================================================
+   GIFT BOX
+========================================================= */
+
+.gift-area {
+    width: 100%;
+    margin-top: 60px;
+    perspective: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gift {
+    position: relative;
+    width: 210px;
+    height: 180px;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    animation: floatGift 3s ease-in-out infinite;
+}
+
+@keyframes floatGift {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+}
+
+.box {
+    position: absolute;
+    bottom: 0;
+    width: 210px;
+    height: 145px;
+    background:
+        linear-gradient(
+            135deg,
+            #ff4f9a,
+            #c72e7c
+        );
+    border-radius: 8px;
+
+    box-shadow:
+        inset -10px -10px 20px rgba(0,0,0,.2),
+        0 25px 50px rgba(0,0,0,.4);
+}
+
+.box::before {
+    content: "";
+    position: absolute;
+    left: 82px;
+    width: 45px;
+    height: 100%;
+    background: #ffd34e;
+}
+
+.box::after {
+    content: "";
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    height: 40px;
+    background: #ffd34e;
+}
+
+
+/* =========================================================
+   GIFT LID
+========================================================= */
+
+.lid {
+    position: absolute;
+    width: 230px;
+    height: 48px;
+    left: -10px;
+    top: 5px;
+    border-radius: 8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff63aa,
+            #dc2e80
+        );
+
+    z-index: 5;
+
+    transform-origin: bottom center;
+
+    transition:
+        1.2s cubic-bezier(.2,.8,.2,1);
+
+    box-shadow:
+        0 10px 20px rgba(0,0,0,.3);
+}
+
+.lid::after {
+    content: "";
+    position: absolute;
+    left: 92px;
+    width: 45px;
+    height: 48px;
+    background: #ffd34e;
+}
+
+
+/* =========================================================
+   RIBBON
+========================================================= */
+
+.ribbon {
+    position: absolute;
+    z-index: 7;
+    top: -32px;
+    left: 88px;
+    width: 35px;
+    height: 45px;
+}
+
+.ribbon::before,
+.ribbon::after {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 35px;
+    border: 8px solid #ffd34e;
+    border-radius: 50%;
+}
+
+.ribbon::before {
+    left: -35px;
+    transform: rotate(25deg);
+}
+
+.ribbon::after {
+    left: 20px;
+    transform: rotate(-25deg);
+}
+
+
+/* =========================================================
+   GIFT OPEN ANIMATION
+========================================================= */
+
+.gift.open .lid {
+    transform:
+        translateY(-100px)
+        rotateX(-35deg)
+        rotateZ(-8deg);
+}
+
+
+/* =========================================================
+   HIDDEN
+========================================================= */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.message-card {
+    max-width: 900px;
+    width: 100%;
+    padding: 45px 30px;
+
+    background:
+        rgba(255,255,255,.08);
+
+    backdrop-filter: blur(15px);
+
+    border:
+        1px solid rgba(255,255,255,.15);
+
+    border-radius: 25px;
+
+    text-align: center;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.3);
+
+    animation:
+        appear 1s ease;
+}
+
+@keyframes appear {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(40px)
+            scale(.95);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+.message-card h2 {
+    color: #ff9ddd;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.message-card p {
+    line-height: 1.8;
+    color: #eee;
+    font-size: 1.1rem;
+}
+
+
+/* =========================================================
+   VIDEO SECTION
+========================================================= */
+
+.video-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 35px auto 0;
+}
+
+.video-container video {
+    display: block;
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+
+    border-radius: 20px;
+
+    background: #000;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.5);
+
+    border:
+        2px solid rgba(255,255,255,.15);
+}
+
+.video-title {
+    font-size: 1.5rem;
+    color: #ffd3ef;
+    margin-top: 25px;
+}
+
+.video-description {
+    color: #ccc;
+    margin-top: 10px;
+}
+
+
+/* =========================================================
+   VIDEO CONTROLS / NEXT BUTTON
+========================================================= */
+
+.video-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+
+/* =========================================================
+   MEMORIES
+========================================================= */
+
+.memories {
+    width: 100%;
+    max-width: 950px;
+}
+
+.memories h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 35px;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(210px, 1fr));
+    gap: 20px;
+}
+
+.photo {
+    background: white;
+    padding: 10px 10px 35px;
+    border-radius: 5px;
+
+    transform: rotate(-2deg);
+
+    transition: .4s;
+
+    box-shadow:
+        0 15px 30px rgba(0,0,0,.4);
+}
+
+.photo:nth-child(even) {
+    transform: rotate(3deg);
+}
+
+.photo:hover {
+    transform:
+        rotate(0)
+        scale(1.05);
+
+    z-index: 5;
+}
+
+.photo img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+}
+
+.photo p {
+    color: #333;
+    text-align: center;
+    margin-top: 10px;
+    font-family: cursive;
+}
+
+
+#cakeSection,
+#finalSection {
+    background-image:
+        linear-gradient(
+            rgba(18, 5, 31, .72),
+            rgba(18, 5, 31, .82)
+        ),
+        url("photo4.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* =========================================================
+   CAKE
+========================================================= */
+
+.cake-area {
+    text-align: center;
+}
+
+.cake {
+    position: relative;
+    width: 260px;
+    height: 180px;
+    margin: 60px auto 30px;
+}
+
+.cake-base {
+    position: absolute;
+    bottom: 0;
+    width: 260px;
+    height: 110px;
+
+    background:
+        linear-gradient(
+            #ff8fc8,
+            #e74f94
+        );
+
+    border-radius:
+        15px 15px 25px 25px;
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.3);
+}
+
+.cake-top {
+    position: absolute;
+    top: 40px;
+    width: 260px;
+    height: 50px;
+    background: #ffd0e7;
+    border-radius: 50%;
+}
+
+.candle {
+    position: absolute;
+    bottom: 105px;
+    width: 16px;
+    height: 55px;
+    background: #fff;
+    border-radius: 4px;
+}
+
+.candle:nth-child(1) {
+    left: 65px;
+}
+
+.candle:nth-child(2) {
+    left: 122px;
+}
+
+.candle:nth-child(3) {
+    left: 179px;
+}
+
+.flame {
+    position: absolute;
+    top: -22px;
+    left: 2px;
+    width: 12px;
+    height: 20px;
+    background: #ffd34e;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    animation: flame .5s infinite alternate;
+}
+
+@keyframes flame {
+
+    from {
+        transform:
+            rotate(-45deg)
+            scale(.9);
+    }
+
+    to {
+        transform:
+            rotate(-45deg)
+            scale(1.1);
+    }
+
+}
+
+.cake-message {
+    font-size: 1.2rem;
+    color: #ffd8ef;
+}
+
+
+/* =========================================================
+   HEARTS
+========================================================= */
+
+.heart {
+    position: fixed;
+    bottom: -30px;
+    font-size: 20px;
+    pointer-events: none;
+    animation:
+        rise 5s linear forwards;
+    z-index: 20;
+}
+
+@keyframes rise {
+
+    from {
+        transform:
+            translateY(0)
+            rotate(0);
+        opacity: 1;
+    }
+
+    to {
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 16px;
+    top: -20px;
+    z-index: 100;
+    pointer-events: none;
+    animation:
+        confettiFall 4s linear forwards;
+}
+
+@keyframes confettiFall {
+
+    to {
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================================================
+   FIREWORKS
+========================================================= */
+
+.firework {
+    position: fixed;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: white;
+    pointer-events: none;
+    z-index: 100;
+    animation:
+        explode 1.2s ease-out forwards;
+}
+
+@keyframes explode {
+
+    0% {
+        transform:
+            translate(0,0);
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translate(
+                calc((var(--x)) * 1px),
+                calc((var(--y)) * 1px)
+            );
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.final {
+    text-align: center;
+}
+
+.final h2 {
+    font-size:
+        clamp(
+            2.5rem,
+            8vw,
+            5rem
+        );
+
+    margin-bottom: 20px;
+}
+
+.final p {
+    font-size: 1.3rem;
+    color: #ddd;
+    max-width: 700px;
+    line-height: 1.8;
+}
+
+.signature {
+    margin-top: 30px;
+    color: #ff9de0;
+    font-family: cursive;
+    font-size: 1.5rem;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.navigation .btn {
+    margin-top: 0;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .gift {
+        transform: scale(.8);
+    }
+
+    .gift.open .lid {
+        transform:
+            translateY(-80px)
+            rotateX(-35deg)
+            rotateZ(-8deg);
+    }
+
+    .message-card {
+        padding: 30px 20px;
+    }
+
+    .message-card h2 {
+        font-size: 2rem;
+    }
+
+    .photo img {
+        height: 180px;
+    }
+
+    .video-container video {
+        max-height: 300px;
+    }
+
+    #cakeSection,
+    #finalSection {
+        background-attachment: scroll;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     STAR BACKGROUND
+========================================================= -->
+
+<div class="stars" id="stars"></div>
+
+
+<!-- =========================================================
+     PAGE 1
+     GIFT BOX
+========================================================= -->
+
+<section class="intro">
+
+    <div class="small-text">
+        A little surprise for you ✨
+    </div>
+
+    <h1>
+        Happy Birthday Keerthi! 🎂
+    </h1>
+
+    <p class="subtitle">
+        Someone special left you a gift... 💖
+    </p>
+
+
+    <div class="gift-area">
+
+        <div class="gift" id="gift">
+
+            <div class="ribbon"></div>
+
+            <div class="lid"></div>
+
+            <div class="box"></div>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="btn moving-gift-btn"
+        id="openGiftBtn"
+        onclick="openGift()">
+
+        🎁 Open Your Gift
+
+    </button>
+
+</section>
+
+
+
+<!-- =========================================================
+     PAGE 2
+     MEMORIES
+========================================================= -->
+
+<section
+    id="memorySection"
+    class="hidden">
+
+    <div class="memories">
+
+        <h2>
+            📸 Little Memories
+        </h2>
+
+
+        <div class="photo-grid">
+
+
+            <!-- PHOTO 1 -->
+
+            <div class="photo">
+
+                <img
+                    src="https://res.cloudinary.com/dsozhkxss/image/upload/v1789828232/IMG-20260812-WA0031_vbzwnd.jpg"
+                    alt="Memory 1">
+
+                <p>
+                    That beautiful smile ✨
+                </p>
+
+            </div>
+
+
+            <!-- PHOTO 2 -->
+
+            <div class="photo">
+
+                <img
+                    src="https://res.cloudinary.com/dsozhkxss/image/upload/v1789828312/IMG-20260812-WA0026_widsqd.jpg"
+                    alt="Memory 2">
+
+                <p>
+                    Another beautiful memory 💕
+                </p>
+
+            </div>
+
+
+            <!-- PHOTO 3 -->
+
+            <div class="photo">
+
+                <img
+                    src="https://res.cloudinary.com/dsozhkxss/image/upload/v1789829058/IMG-20251214-WA0540_yxdj70.jpg"
+                    alt="Memory 3">
+
+                <p>
+                    Moments worth remembering 🌸
+                </p>
+
+            </div>
+
+
+            <!-- PHOTO 4 -->
+
+            <div class="photo">
+
+                <img
+                    src="photo4.jpg"
+                    alt="Memory 4">
+
+                <p>
+                    Keep shining 🌟
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <div
+            style="
+                text-align:center;
+                margin-top:30px;
+            ">
+
+            <button
+                class="btn"
+                onclick="showVideo()">
+
+                🎥 Continue to Video
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PAGE 3
+     VIDEO / MAIN GIFT
+     
+     The old birthday letter section has been removed.
+========================================================= -->
+
+<section
+    id="giftsSection"
+    class="hidden">
+
+    <div class="message-card">
+
+        <h2>
+            🎁 Your Special Surprise
+        </h2>
+
+        <p>
+            Here's something made especially for you. ❤️
+        </p>
+
+
+        <!-- VIDEO -->
+
+        <div class="video-container">
+
+            <video
+                id="birthdayVideo"
+                controls
+                playsinline
+                preload="metadata">
+
+                <source
+                    src="birthday-video.mp4"
+                    type="video/mp4">
+
+                Your browser does not support
+                the video element.
+
+            </video>
+
+        </div>
+
+
+        <div class="video-title">
+            🎥 A Special Video For You
+        </div>
+
+        <div class="video-description">
+            Watch it till the end... there is more waiting for you. 💖
+        </div>
+
+
+        <!-- NEXT -->
+
+        <div class="video-navigation">
+
+            <button
+                class="btn"
+                onclick="showCake()">
+
+                🎂 Continue to Wish
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PAGE 4
+     CAKE
+========================================================= -->
+
+<section
+    id="cakeSection"
+    class="hidden">
+
+    <div class="cake-area">
+
+        <h2>
+            🎂 Make a Wish
+        </h2>
+
+
+        <div class="cake">
+
+            <div class="cake-top"></div>
+
+            <div class="cake-base"></div>
+
+
+            <div class="candle">
+
+                <div class="flame"></div>
+
+            </div>
+
+
+            <div class="candle">
+
+                <div class="flame"></div>
+
+            </div>
+
+
+            <div class="candle">
+
+                <div class="flame"></div>
+
+            </div>
+
+        </div>
+
+
+        <p class="cake-message">
+            Close your eyes...
+            make a wish... ✨
+        </p>
+
+
+        <button
+            class="btn"
+            onclick="finishBirthday()">
+
+            ✨ I Made My Wish
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PAGE 5
+     FINAL
+========================================================= -->
+
+<section
+    id="finalSection"
+    class="hidden">
+
+    <div class="final">
+
+        <div class="small-text">
+            Your final surprise
+        </div>
+
+
+        <h2>
+            🎆 Happy Birthday Keerthi! 🎆
+        </h2>
+
+
+        <p>
+
+            May your life always be filled with
+            beautiful people, unforgettable adventures,
+            endless laughter and dreams that come true.
+
+            <br><br>
+
+            And whenever you look back at this little
+            website, I hope it reminds you of one thing:
+
+            <br><br>
+
+            <strong>
+
+                You are loved.
+                You are appreciated.
+                And you deserve beautiful things. ❤️
+
+            </strong>
+
+        </p>
+
+
+        <div class="signature">
+
+            Made with ❤️ just for you
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<script>
+
+
+/* =========================================================
+   STAR BACKGROUND
+========================================================= */
+
+const stars =
+    document.getElementById("stars");
+
+
+for(let i = 0; i < 100; i++){
+
+    const star =
+        document.createElement("div");
+
+    star.className =
+        "star";
+
+    star.style.left =
+        Math.random() * 100 + "%";
+
+    star.style.top =
+        Math.random() * 100 + "%";
+
+    star.style.animationDelay =
+        Math.random() * 2 + "s";
+
+    stars.appendChild(star);
+
+}
+
+
+
+/* =========================================================
+   OPEN GIFT
+   GOES TO MEMORIES
+========================================================= */
+
+/* =========================================================
+   MOVING OPEN-YOUR-GIFT BUTTON
+   Starts when the cursor gets close, moves for 2 seconds,
+   then stops permanently.
+========================================================= */
+
+const openGiftButton =
+    document.getElementById("openGiftBtn");
+
+const introSection =
+    document.querySelector(".intro");
+
+let buttonMovementStarted = false;
+let buttonMovementFinished = false;
+let buttonMovementInterval = null;
+let buttonMovementTimeout = null;
+
+function moveOpenGiftButton(){
+
+    if(buttonMovementFinished){
+        return;
+    }
+
+    const areaWidth =
+        introSection.clientWidth;
+
+    const areaHeight =
+        introSection.clientHeight;
+
+    const buttonWidth =
+        openGiftButton.offsetWidth;
+
+    const buttonHeight =
+        openGiftButton.offsetHeight;
+
+    const padding = 20;
+
+    const maxX =
+        Math.max(
+            padding,
+            areaWidth - buttonWidth - padding
+        );
+
+    const maxY =
+        Math.max(
+            padding,
+            areaHeight - buttonHeight - padding
+        );
+
+    const x =
+        padding +
+        Math.random() *
+        Math.max(1, maxX - padding);
+
+    const y =
+        padding +
+        Math.random() *
+        Math.max(1, maxY - padding);
+
+    openGiftButton.style.left =
+        Math.round(x) + "px";
+
+    openGiftButton.style.top =
+        Math.round(y) + "px";
+
+    openGiftButton.style.right = "auto";
+    openGiftButton.style.bottom = "auto";
+    openGiftButton.style.transform = "none";
+}
+
+function startOpenGiftButtonMovement(){
+
+    if(
+        buttonMovementStarted ||
+        buttonMovementFinished
+    ){
+        return;
+    }
+
+    buttonMovementStarted = true;
+
+    moveOpenGiftButton();
+
+    buttonMovementInterval =
+        setInterval(
+            moveOpenGiftButton,
+            250
+        );
+
+    buttonMovementTimeout =
+        setTimeout(() => {
+
+            clearInterval(
+                buttonMovementInterval
+            );
+
+            buttonMovementInterval = null;
+            buttonMovementFinished = true;
+
+        }, 2000);
+}
+
+/* Desktop: start when the cursor gets close. */
+document.addEventListener(
+    "mousemove",
+    (event) => {
+
+        if(
+            buttonMovementStarted ||
+            buttonMovementFinished
+        ){
+            return;
+        }
+
+        const rect =
+            openGiftButton.getBoundingClientRect();
+
+        const centerX =
+            rect.left + rect.width / 2;
+
+        const centerY =
+            rect.top + rect.height / 2;
+
+        const distance =
+            Math.hypot(
+                event.clientX - centerX,
+                event.clientY - centerY
+            );
+
+        if(distance < 150){
+            startOpenGiftButtonMovement();
+        }
+    }
+);
+
+/* Mobile: start on first touch. */
+openGiftButton.addEventListener(
+    "touchstart",
+    () => {
+        startOpenGiftButtonMovement();
+    },
+    { passive: true }
+);
+
+function openGift(){
+
+    if(buttonMovementInterval){
+        clearInterval(buttonMovementInterval);
+        buttonMovementInterval = null;
+    }
+
+    if(buttonMovementTimeout){
+        clearTimeout(buttonMovementTimeout);
+        buttonMovementTimeout = null;
+    }
+
+    buttonMovementFinished = true;
+    openGiftButton.style.display = "none";
+
+    const gift =
+        document.getElementById("gift");
+
+
+    gift.classList.add("open");
+
+
+    createConfetti();
+
+    createHearts();
+
+
+    setTimeout(() => {
+
+        const section =
+            document.getElementById(
+                "memorySection"
+            );
+
+
+        section.classList.remove(
+            "hidden"
+        );
+
+
+
+        section.scrollIntoView({
+            behavior: "smooth"
+        });
+
+
+    }, 1200);
+
+}
+
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+function createConfetti(){
+
+    for(let i = 0; i < 120; i++){
+
+        const confetti =
+            document.createElement("div");
+
+
+        confetti.className =
+            "confetti";
+
+
+        confetti.style.left =
+            Math.random() * 100 + "vw";
+
+
+        confetti.style.animationDelay =
+            Math.random() * 2 + "s";
+
+
+        confetti.style.transform =
+            `rotate(${Math.random()*360}deg)`;
+
+
+        confetti.style.background =
+            `hsl(
+                ${Math.random()*360},
+                90%,
+                65%
+            )`;
+
+
+        document.body.appendChild(
+            confetti
+        );
+
+
+        setTimeout(() => {
+
+            confetti.remove();
+
+        }, 5000);
+
+    }
+
+}
+
+
+
+/* =========================================================
+   FLOATING HEARTS
+========================================================= */
+
+function createHearts(){
+
+    const emojis = [
+
+        "❤️",
+        "💖",
+        "💕",
+        "💗",
+        "💓",
+        "💞"
+
+    ];
+
+
+    for(let i = 0; i < 30; i++){
+
+        setTimeout(() => {
+
+            const heart =
+                document.createElement("div");
+
+
+            heart.className =
+                "heart";
+
+
+            heart.innerHTML =
+                emojis[
+                    Math.floor(
+                        Math.random() *
+                        emojis.length
+                    )
+                ];
+
+
+            heart.style.left =
+                Math.random() * 100 + "vw";
+
+
+            heart.style.animationDuration =
+                (3 + Math.random()*3) + "s";
+
+
+            document.body.appendChild(
+                heart
+            );
+
+
+            setTimeout(() => {
+
+                heart.remove();
+
+            }, 6000);
+
+
+        }, i * 150);
+
+    }
+
+}
+
+
+
+/* =========================================================
+   SHOW MEMORIES
+========================================================= */
+
+function showMemories(){
+
+    const section =
+        document.getElementById(
+            "memorySection"
+        );
+
+
+    section.classList.remove(
+        "hidden"
+    );
+
+
+    section.scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+
+/* =========================================================
+   SHOW VIDEO
+========================================================= */
+
+function showVideo(){
+
+    const section =
+        document.getElementById(
+            "giftsSection"
+        );
+
+
+    section.classList.remove(
+        "hidden"
+    );
+
+
+
+    section.scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+
+/* =========================================================
+   SHOW CAKE
+========================================================= */
+
+function showCake(){
+
+    const section =
+        document.getElementById(
+            "cakeSection"
+        );
+
+
+    section.classList.remove(
+        "hidden"
+    );
+
+
+
+    section.scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+
+/* =========================================================
+   FINAL BIRTHDAY
+========================================================= */
+
+function finishBirthday(){
+
+    /*
+        Hide the cake
+    */
+
+    document
+        .getElementById("cakeSection")
+        .classList.add("hidden");
+
+
+    /*
+        Show final section
+    */
+
+    const final =
+        document.getElementById(
+            "finalSection"
+        );
+
+
+    final.classList.remove(
+        "hidden"
+    );
+
+
+    final.scrollIntoView({
+        behavior: "smooth"
+    });
+
+
+    /*
+        Celebration
+    */
+
+    createConfetti();
+
+    createHearts();
+
+
+    /*
+        Fireworks
+    */
+
+    setTimeout(() => {
+
+        for(let i = 0; i < 12; i++){
+
+            setTimeout(() => {
+
+                createFirework(
+
+                    Math.random() *
+                    window.innerWidth,
+
+                    Math.random() *
+                    window.innerHeight *
+                    .7
+
+                );
+
+            }, i * 350);
+
+        }
+
+    }, 500);
+
+}
+
+
+
+/* =========================================================
+   FIREWORKS
+========================================================= */
+
+function createFirework(x, y){
+
+    for(let i = 0; i < 45; i++){
+
+        const particle =
+            document.createElement("div");
+
+
+        particle.className =
+            "firework";
+
+
+        particle.style.left =
+            x + "px";
+
+
+        particle.style.top =
+            y + "px";
+
+
+        const angle =
+            Math.random() *
+            Math.PI *
+            2;
+
+
+        const distance =
+            50 +
+            Math.random() *
+            160;
+
+
+        particle.style.setProperty(
+
+            "--x",
+
+            Math.cos(angle) *
+            distance
+
+        );
+
+
+        particle.style.setProperty(
+
+            "--y",
+
+            Math.sin(angle) *
+            distance
+
+        );
+
+
+        particle.style.background =
+            `hsl(
+                ${Math.random()*360},
+                100%,
+                70%
+            )`;
+
+
+        document.body.appendChild(
+            particle
+        );
+
+
+        setTimeout(() => {
+
+            particle.remove();
+
+        }, 1500);
+
+    }
+
+}
+
+
+
+/* =========================================================
+   RANDOM FLOATING HEARTS
+========================================================= */
+
+setInterval(() => {
+
+    if(Math.random() > .5){
+
+        const heart =
+            document.createElement("div");
+
+
+        heart.className =
+            "heart";
+
+
+        heart.innerHTML =
+            "💗";
+
+
+        heart.style.left =
+            Math.random() *
+            100 +
+            "vw";
+
+
+        document.body.appendChild(
+            heart
+        );
+
+
+        setTimeout(() => {
+
+            heart.remove();
+
+        }, 5000);
+
+    }
+
+}, 1500);
+
+
+
+/* =========================================================
+   INITIAL OPEN-YOUR-GIFT BUTTON POSITION
+========================================================= */
+
+function positionOpenGiftButton(){
+
+    if(
+        buttonMovementStarted ||
+        buttonMovementFinished
+    ){
+        return;
+    }
+
+    openGiftButton.style.left = "50%";
+    openGiftButton.style.top = "auto";
+    openGiftButton.style.bottom = "70px";
+    openGiftButton.style.marginLeft =
+        "-" + (openGiftButton.offsetWidth / 2) + "px";
+    openGiftButton.style.transform = "none";
+}
+
+positionOpenGiftButton();
+
+window.addEventListener(
+    "resize",
+    positionOpenGiftButton
+);
+
+
+/* =========================================================
+   VIDEO AUTO-NAVIGATION
+========================================================= */
+
+/*
+   The video itself does NOT automatically skip.
+   The user watches the video and then clicks
+   "Continue to Memories".
+
+   This keeps the navigation under the user's control.
+*/
+
+
+const birthdayVideo =
+    document.getElementById(
+        "birthdayVideo"
+    );
+
+
+if(birthdayVideo){
+
+    birthdayVideo.addEventListener(
+        "ended",
+        function(){
+
+            /*
+                Video finished.
+                We do not force navigation.
+                The Continue button remains available.
+            */
+
+            createHearts();
+
+        }
+    );
+
+}
+
+</script>
+
+</body>
+</html>
